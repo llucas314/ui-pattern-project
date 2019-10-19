@@ -7,8 +7,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Welcome!</h1>
+<body class="flex">
+    <div class="search-container flex">
+        <input type="text" name="searchfield" class="search field" placeholder="Enter an artist...">
+        <input type="submit" value="search" class="search button">
+    </div>
+    <div class="modal">
+        <h1 class="modal-info artist"></h1>
+        <img src="" alt="" class="artist-img">
+    </div>
+    <div class="overlay"></div>
     <script src="main.js"></script>
 </body>
 </html>
