@@ -22,13 +22,13 @@ fetch(url, {
       .then(res => accessToken = res.access_token)
       .catch(err => console.log(err))
 
+
+
 form.addEventListener('submit', function(e){
     e.preventDefault();
     modal.classList.add('display');
     overlay.classList.add('display');
     form.classList.add('conceal');
-    artistImage.classList.add('radius');
-
     console.log('added');
     inputValue = input.value.replace(" ", '%20');
     console.log(inputValue)
@@ -42,6 +42,17 @@ form.addEventListener('submit', function(e){
             console.log(res);
             artistImage.src = res.artists.items[0].images[0].url;
             artist.textContent = res.artists.items[0].name
+            artistImage.classList.remove('corner');
+            // document.addEventListener('click', toggle);
+            setInterval(toggle, 2000);
         })
         .catch(err => console.log(err))
 })
+
+function toggle(){
+    console.log('clicked')
+                artistImage.classList.add('corner');
+                form.classList.remove('conceal');
+                form.classList.add('bottom');
+                document.removeEventListener('click',toggle);
+}
