@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    outline: none;
 }
 body {
   background: #C7E5E6;
@@ -9,7 +10,10 @@ body {
   padding: 0;
   width: 100vw;
 }
-
+img{
+    max-height: 75vh;
+    width: auto;
+}
 h1 {
   color: #A6A49C;
   font-family: 'Helvetica', Arial, sans-serif;
@@ -19,6 +23,11 @@ p {
   color: #474544;
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 14px;
+}
+
+img{
+    border-radius: 1em;
+    transition: all 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms;
 }
 
 .flex{
@@ -31,18 +40,20 @@ p {
   opacity: 0;
   padding: 50px;
   position: absolute;
-  z-index: 1100;
+  z-index: -1;
   transition: opacity 600ms linear 600ms;
 }
-
+.radius{
+    border-radius: 18em;
+}
 .modal_info {
   background: #FCF9F2;
   padding: 50px 100px;
   text-align: center;
 }
 
-.modal_overlay {
-  background: rgba(0, 0, 0, 0.5);
+.overlay {
+  background: rgba(0, 0, 0, 0.3);
   bottom: 0;
   left: 0;
   opacity: 0;
@@ -51,17 +62,18 @@ p {
   right: 0;
   top: 0;
   visibility: hidden;
-  z-index: 900;
+  z-index: -3;
   transition: opacity 200ms linear;
 }
 
 .display {
   opacity: 1;
   visibility: visible;
+  text-align: center;
 }
 
 .conceal {
-  visibility: visible;
+  visibility: hidden;
 }
 
 .search {
@@ -72,14 +84,17 @@ p {
   vertical-align: middle;
   whitespace: normal;
   width: 172px;
-  z-index: 1000;
-  -webkit-transition: opacity 100ms linear;
-  -moz-transition: opacity 100ms linear;
-  -ms-transition: opacity 100ms linear;
-  -o-transition: opacity 100ms linear;
+  z-index: 1;
   transition: opacity 100ms linear;
 }
-
+.field{
+    color: #757575;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #757575;
+    margin-bottom: 5px;
+}
 .search.button {
   color: #FFFFFF;
   letter-spacing: 2px;
@@ -89,86 +104,9 @@ p {
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
+  border-radius: 3em;
 }
  
 .search.button:hover {
   background: #3E465A;
 }
-
-.search.button.load {
-  opacity: 0;
-}
-
-/* button.modal_close {
-  background: #363D4E;
-  border: none;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  color: #FFFFFF;
-  cursor: pointer;
-  outline: none;
-  width: 52px;
-  height: 52px;
-  position: absolute;
-  right: 30px;
-  top: 30px;
-  -webkit-transition: -webkit-transform 600ms;
-  -moz-transition: -moz-transform 600ms;
-  -ms-transition: -ms-transform 600ms;
-  -o-transition: -o-transform 600ms;
-  transition: transform 600ms;
-}
-
-button.modal_close:hover {
-  background: #3E465A;
-  -webkit-transform: rotate(360deg) scale(1.10);
-  -moz-transform: rotate(360deg) scale(1.10);
-  -ms-transform: rotate(360deg) scale(1.10);
-  -o-transform: rotate(360deg) scale(1.10);
-  transform: rotate(360deg) scale(1.10);
-  -webkit-transition: -webkit-transform 600ms;
-  -moz-transition: -moz-transform 600ms;
-  -ms-transition: -ms-transform 600ms;
-  -o-transition: -o-transform 600ms;
-  transition: transform 600ms;
-}
-
-button.modal_close span, span:before, span:after {
-  background: #FFFFFF;
-  content: '';
-  cursor: pointer;
-  display: block;
-  height: 2px;
-  position: absolute;
-  width: 20px;
-}
-
-button.modal_close span:first-child {
-  background: none;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-button.modal_close span:before {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-button.modal_close span:after {
-  -webkit-transform: translateY(-2px) rotate(-45deg);
-  -moz-transform: translateY(-2px) rotate(-45deg);
-  -ms-transform: translateY(-2px) rotate(-45deg);
-  -o-transform: translateY(-2px) rotate(-45deg);
-  transform: translateY(-2px) rotate(-45deg);
-  top: 2px;
-} */
