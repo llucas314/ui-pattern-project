@@ -10,6 +10,8 @@ let artistImage = document.querySelector('.artist-img');
 let artist = document.querySelector('.artist');
 const searchUrl = 'https://api.spotify.com/v1/search?type=artist&q='
 const labels = document.querySelectorAll('label');
+const songs = document.querySelector('.songs');
+const albums = document.querySelector('.albums');
 fetch(url, {
     body: "grant_type=client_credentials",
     headers: {
@@ -43,7 +45,29 @@ form.addEventListener('submit', function(e){
             artistImage.src = res.artists.items[0].images[0].url;
             artist.textContent = res.artists.items[0].name
             artistImage.classList.remove('corner');
-            // document.addEventListener('click', toggle);
+            let artistID = res.artists.items[0].id
+            fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=3&market=US`, {
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    albums.innerHTML = `<span>&bull;</span> ${res.items[0].name}<br><span>&bull;</span> ${res.items[1].name}<br><span>&bull;</span> ${res.items[2].name}`
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+            fetch(`https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US`, {
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+                })
+            .then(res => res.json())
+            .then(res => {
+                let tracks = res.tracks;
+                songs.innerHTML = `<span>&bull;</span> ${tracks[0].name} <br> <span>&bull;</span>  ${tracks[1].name} <br> <span>&bull;</span>  ${tracks[2].name} <br> <span>&bull;</span>  ${tracks[3].name} <br> <span>&bull;</span>  ${tracks[4].name}`
+                console.log(res)}) 
+            .catch(err => console.log(err))   
             setTimeout(toggle, 2000);
         })
         .catch(err => console.log(err))
@@ -56,11 +80,3 @@ function toggle(){
                 form.classList.add('bottom');
                 document.removeEventListener('click',toggle, {passive: true});
 }
-
-labels.forEach(element =>{
-    element.addEventListener('click', e=>{
-        console.log("checkbox")
-        let checkbox = document.querySelector(`#${this.for}`)
-        checkbox.checked = true;
-    })
-})
