@@ -184,7 +184,33 @@ input:checked ~ .tab-content {
     z-index: -1;
   } 
 
-  .display {
+ 
+
+  a{
+      display: block;
+      text-decoration: none;
+      color: black;
+  }
+  a:hover{
+      color: teal;
+  }
+
+.album-overlay{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.774);
+    height: 108vh;
+    width: 100vw;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+
+}
+.album-img{
+    border-radius: 1em;
+}
+  
+.display {
     opacity: 1;
     visibility: visible;
     text-align: center;
@@ -194,21 +220,3 @@ input:checked ~ .tab-content {
     visibility: hidden;
     transition: none;
   }
-
-  .songs>a{
-      display: block;
-      text-decoration: none;
-      color: black;
-  }
-  .songs>a:hover{
-      color: teal;
-  }
-
-.album-overlay{
-    position: fixed;
-    background: rgba(225, 225, 225, .2);
-    height: 108vh;
-    width: 100vw;
-}
-
-  
