@@ -5,7 +5,7 @@
 body {
   background: #C7E5E6;
   font-family: 'Helvetica', Arial, sans-serif;
-  height: 100vh;
+  height: 108vh;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -61,15 +61,7 @@ p {
   transition: opacity 200ms linear;
 }
 
-.display {
-  opacity: 1;
-  visibility: visible;
-  text-align: center;
-}
 
-.conceal {
-  visibility: hidden;
-}
 
 .search {
   background: #363D4E;
@@ -110,7 +102,7 @@ p {
 .corner{
     max-height: 35vmin;
     width: auto;
-    transform: translate(-30vw,-25vh);
+    transform: translate(-37vw,-10vh);
     box-shadow: 10px 10px rgba(0,0,0,0.2);
 }
 
@@ -124,11 +116,14 @@ p {
     overflow: hidden;
     box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
     transform: translate(0vw, -21vh);
+    opacity: 0;
+    transition: opacity 600ms linear;
 }
 .tab {
     width: 100%;
     color: white;
     overflow: hidden;
+    text-align: left;
 }
 .tab-label {
     display: flex;
@@ -184,3 +179,26 @@ input:checked ~ .tab-content {
     opacity: 0;
     z-index: -1;
   } 
+
+  .display {
+    opacity: 1;
+    visibility: visible;
+    text-align: center;
+  }
+  
+  .conceal {
+    visibility: hidden;
+    transition: none;
+  }
+
+  .songs>a{
+      display: block;
+      text-decoration: none;
+      color: black;
+  }
+  .songs>a:hover{
+      color: teal;
+  }
+
+
+  

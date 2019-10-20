@@ -9,7 +9,7 @@ let inputValue;
 let artistImage = document.querySelector('.artist-img');
 let artist = document.querySelector('.artist');
 const searchUrl = 'https://api.spotify.com/v1/search?type=artist&q='
-const labels = document.querySelectorAll('label');
+const tabs = document.querySelector('.tabs');
 const songs = document.querySelector('.songs');
 const albums = document.querySelector('.albums');
 fetch(url, {
@@ -31,9 +31,13 @@ form.addEventListener('submit', function(e){
     modal.classList.add('display');
     overlay.classList.add('display');
     form.classList.add('conceal');
+    tabs.classList.remove('display');
+    while(songs.firstChild){
+        songs.removeChild(songs.firstChild);
+    }
     console.log('added');
     inputValue = input.value.replace(" ", '%20');
-    console.log(inputValue)
+    console.log(inputValue);
     fetch(searchUrl+inputValue, {
         headers: {
             "Authorization": `Bearer ${accessToken}`
@@ -64,8 +68,16 @@ form.addEventListener('submit', function(e){
                 })
             .then(res => res.json())
             .then(res => {
-                let tracks = res.tracks;
-                songs.innerHTML = `<span>&bull;</span> ${tracks[0].name} <br> <span>&bull;</span>  ${tracks[1].name} <br> <span>&bull;</span>  ${tracks[2].name} <br> <span>&bull;</span>  ${tracks[3].name} <br> <span>&bull;</span>  ${tracks[4].name}`
+                let tracks = res.tracks.map(element => element.name);
+                let trackURL = res.tracks.map(element => element.external_urls.spotify)
+                for (let i = 0; i < tracks.length; i++) {
+                    let trackLink = document.createElement('a');
+                    trackLink.href = trackURL[i];
+                    trackLink.innerText = (i+1)+'.  ' +tracks[i];
+                    trackLink.target = '_blank';
+                    songs.appendChild(trackLink);
+                }
+                // songs.innerHTML = `<span>&bull;</span> ${tracks[0].name} <br> <span>&bull;</span>  ${tracks[1].name} <br> <span>&bull;</span>  ${tracks[2].name} <br> <span>&bull;</span>  ${tracks[3].name} <br> <span>&bull;</span>  ${tracks[4].name}`
                 console.log(res)}) 
             .catch(err => console.log(err))   
             setTimeout(toggle, 2000);
@@ -78,5 +90,5 @@ function toggle(){
                 artistImage.classList.add('corner');
                 form.classList.remove('conceal');
                 form.classList.add('bottom');
-                document.removeEventListener('click',toggle, {passive: true});
+                tabs.classList.add('display');
 }
