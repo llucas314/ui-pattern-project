@@ -112,7 +112,7 @@ p {
 
 .bottom{
     position: absolute;
-    bottom: 10vh;
+    transform: translate(37vw, 20vh);
 }
 
 .tabs {
@@ -245,4 +245,34 @@ input:checked ~ .tab-content {
   .conceal {
     visibility: hidden;
     transition: none;
+  }
+
+  .background{
+      position: fixed;
+      height: 70vh;
+      width: 100vw;
+      z-index: -4;
+      background-image: url('./images/stefan-kunze-1-C334jLxG0-unsplash.jpg');
+      background-size: cover;
+      filter: grayscale(100%);
+      background-color: #757575;
+      background-blend-mode: multiply;
+  }
+  .background-img-wrapper{
+      align-self: flex-end;
+      height: 100%;
+  }
+  .background-img{
+      height: 100%;
+      max-height: none;
+      border-radius: 1em;
+      filter: grayscale(100%);
+      
+  }
+
+  .white{
+      color: #ffffff;
+  }
+  .white::placeholder{
+      color: #ffffff;
   }

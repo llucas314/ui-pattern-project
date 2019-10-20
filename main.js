@@ -17,7 +17,9 @@ const albumExit = document.querySelector('.album-exit');
 const albumLink = document.querySelector('.album-link');
 const albumCover = document.querySelector('.album-img');
 const albumWrapper = document.querySelector('.album-wrapper');
+const background = document.querySelector('.background-img');
 const checks = document.querySelectorAll('.check');
+const title = document.getElementsByTagName('title')[0];
 fetch(url, {
     body: "grant_type=client_credentials",
     headers: {
@@ -39,6 +41,7 @@ form.addEventListener('submit', function(e){
     form.classList.add('conceal');
     tabs.classList.remove('display');
     artist.classList.add('conceal');
+    input.classList.add('white');
     checks.forEach(element=>element.checked = false);
     while(songs.firstChild){
         songs.removeChild(songs.firstChild);
@@ -58,18 +61,25 @@ form.addEventListener('submit', function(e){
         .then(res => {
             console.log(res);
             artistImage.src = res.artists.items[0].images[0].url;
-            artist.textContent = res.artists.items[0].name
+            // background.src = res.artists.items[0].images[0].url;
+            artist.textContent = res.artists.items[0].name;
+            title.innerText = res.artists.items[0].name + ' - The Music Cove'
             artist.classList.remove('conceal');
             artistImage.classList.remove('corner');
             let artistID = res.artists.items[0].id
-            fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=3&market=US`, {
+            fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=10&market=US`, {
                 headers: {
                     "Authorization": `Bearer ${accessToken}`
                 }
             })
                 .then(res => res.json())
                 .then(res => {
-                    let albumNames = res.items.map(element => element.name);
+                    let albumNames = res.items.map((element) =>{
+                        // if(!albumNames.includes(element.name)){
+                        //     return element.name
+                        // } else return
+                        return element.name
+                    });
                     let albumURL = res.items.map(element => element.external_urls.spotify);
                     let albumImg = res.items.map(element => element.images[0].url)
                     for (let i = 0; i < albumNames.length; i++) {
