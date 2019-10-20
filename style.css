@@ -1,11 +1,12 @@
 *{
     box-sizing: border-box;
     outline: none;
+    
 }
 body {
   background: #C7E5E6;
-  font-family: 'Helvetica', Arial, sans-serif;
-  height: 108vh;
+  font-family: 'Hind', sans-serif;
+  height: 100vh;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -19,12 +20,12 @@ img{
 }
 h1 {
   color: #A6A49C;
-  font-family: 'Helvetica', Arial, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 p {
   color: #474544;
-  font-family: 'Helvetica', Arial, sans-serif;
+  font-family: 'Hind', sans-serif;
   font-size: 14px;
 }
 
@@ -62,11 +63,22 @@ p {
 }
 
 .artist{
-    transform: translateY(53px);
+    transform: translateY(-47vh);
+    position: absolute;
     color: #FFFFFF;
-    font-size: 2em;
+    font-size: 3em;
+    font-variant-caps: all-small-caps;
+    color: #FDD662;
+    text-shadow: 1px 1px 0px #000;
 }
-
+.small{
+    font-size: 4vmin;
+    color: #ffffff;
+}
+span{
+    font-size: 6vmin;
+    color: #FDD662;
+}
 .search {
   background: #363D4E;
   display: inline-block;
@@ -90,7 +102,7 @@ p {
   color: #FFFFFF;
   letter-spacing: 2px;
   line-height: 66px;
-  font-family: 'Helvetica', Arial, sans-serif;
+  font-family: 'Hind', sans-serif;
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
@@ -106,8 +118,9 @@ p {
 .corner{
     max-height: 35vmin;
     width: auto;
-    transform: translate(-35vw,-33vh);
+    transform: translate(-35vw,-30vh);
     box-shadow: 10px 10px rgba(0,0,0,0.2);
+    filter: grayscale(100%);
 }
 
 .bottom{
@@ -119,7 +132,6 @@ p {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
-    transform: translate(0vw, -21vh);
     opacity: 0;
     transition: opacity 600ms linear;
 }
@@ -254,8 +266,8 @@ input:checked ~ .tab-content {
       z-index: -4;
       background-image: url('./images/stefan-kunze-1-C334jLxG0-unsplash.jpg');
       background-size: cover;
-      filter: grayscale(100%);
-      background-color: #757575;
+      filter: grayscale(50%);
+      background-color: #2B3E50;
       background-blend-mode: multiply;
   }
   .background-img-wrapper{

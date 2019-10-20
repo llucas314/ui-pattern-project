@@ -40,7 +40,7 @@ form.addEventListener('submit', function(e){
     overlay.classList.add('display');
     form.classList.add('conceal');
     tabs.classList.remove('display');
-    artist.classList.add('conceal');
+    // artist.classList.add('conceal');
     input.classList.add('white');
     checks.forEach(element=>element.checked = false);
     while(songs.firstChild){
@@ -62,9 +62,10 @@ form.addEventListener('submit', function(e){
             console.log(res);
             artistImage.src = res.artists.items[0].images[0].url;
             // background.src = res.artists.items[0].images[0].url;
-            artist.textContent = res.artists.items[0].name;
+            artist.innerHTML = "inside the cove with <span>"+res.artists.items[0].name+'</span>';
+            artist.classList.add('small');
             title.innerText = res.artists.items[0].name + ' - The Music Cove'
-            artist.classList.remove('conceal');
+            // artist.classList.remove('conceal');
             artistImage.classList.remove('corner');
             let artistID = res.artists.items[0].id
             fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=10&market=US`, {
