@@ -84,7 +84,7 @@ form.addEventListener('submit', function(e){
                             albumLink.target = '_blank';
                             albumOverlay.classList.add('display');
                             albumWrapper.style.transform = 'scale(1)';
-                            albumOverlay.addEventListener('click', e =>{
+                            albumExit.addEventListener('click', e =>{
                                 albumOverlay.classList.remove('display');
                                 albumWrapper.style.transform = 'scale(0)';
                             })

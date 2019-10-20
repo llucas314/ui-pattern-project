@@ -233,6 +233,7 @@ input:checked ~ .tab-content {
     font-weight: 900;
     background: #1a252f;
     color: #ffffff;
+    cursor: pointer;
 }
   
 .display {
