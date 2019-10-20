@@ -16,6 +16,7 @@ const albumOverlay = document.querySelector('.album-overlay');
 const albumExit = document.querySelector('.album-exit');
 const albumLink = document.querySelector('.album-link');
 const albumCover = document.querySelector('.album-img');
+const albumWrapper = document.querySelector('.album-wrapper');
 const checks = document.querySelectorAll('.check');
 fetch(url, {
     body: "grant_type=client_credentials",
@@ -37,6 +38,7 @@ form.addEventListener('submit', function(e){
     overlay.classList.add('display');
     form.classList.add('conceal');
     tabs.classList.remove('display');
+    artist.classList.add('conceal');
     checks.forEach(element=>element.checked = false);
     while(songs.firstChild){
         songs.removeChild(songs.firstChild);
@@ -57,6 +59,7 @@ form.addEventListener('submit', function(e){
             console.log(res);
             artistImage.src = res.artists.items[0].images[0].url;
             artist.textContent = res.artists.items[0].name
+            artist.classList.remove('conceal');
             artistImage.classList.remove('corner');
             let artistID = res.artists.items[0].id
             fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=3&market=US`, {
@@ -80,8 +83,10 @@ form.addEventListener('submit', function(e){
                             albumLink.href = albumURL[i];
                             albumLink.target = '_blank';
                             albumOverlay.classList.add('display');
+                            albumWrapper.style.transform = 'scale(1)';
                             albumOverlay.addEventListener('click', e =>{
                                 albumOverlay.classList.remove('display');
+                                albumWrapper.style.transform = 'scale(0)';
                             })
                             
                         })
