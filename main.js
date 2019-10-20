@@ -75,14 +75,28 @@ form.addEventListener('submit', function(e){
             })
                 .then(res => res.json())
                 .then(res => {
-                    let albumNames = res.items.map((element) =>{
+                    let albumArray = [];
+                    let foundSame = false
+                    for (let i = 0; i < res.items.length; i++) {
+                        for(let j = 0; j < albumArray.length; j++){
+                            if(albumArray[j].name == res.items[i].name){
+                                foundSame = true;
+                            }
+                        } 
+                        if(foundSame == false){
+                            albumArray.push(res.items[i]);
+                        }
+                        foundSame = false;
+                    }
+                    let albumNames = albumArray.map(element=>element.name);
+                    // res.items.map((element) =>{
                         // if(!albumNames.includes(element.name)){
                         //     return element.name
                         // } else return
-                        return element.name
-                    });
-                    let albumURL = res.items.map(element => element.external_urls.spotify);
-                    let albumImg = res.items.map(element => element.images[0].url)
+                    //     return element.name
+                    // });
+                    let albumURL = albumArray.map(element => element.external_urls.spotify);
+                    let albumImg = albumArray.map(element => element.images[0].url)
                     for (let i = 0; i < albumNames.length; i++) {
                         let albumList = document.createElement('a');
                         albumList.href = '#';
