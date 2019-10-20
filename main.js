@@ -12,6 +12,11 @@ const searchUrl = 'https://api.spotify.com/v1/search?type=artist&q='
 const tabs = document.querySelector('.tabs');
 const songs = document.querySelector('.songs');
 const albums = document.querySelector('.albums');
+const albumOverlay = document.querySelector('.album-overlay');
+const albumExit = document.querySelector('.album-exit');
+const albumLink = document.querySelector('.album-link');
+const albumCover = document.querySelector('.album-img');
+
 fetch(url, {
     body: "grant_type=client_credentials",
     headers: {
@@ -57,7 +62,25 @@ form.addEventListener('submit', function(e){
             })
                 .then(res => res.json())
                 .then(res => {
-                    albums.innerHTML = `<span>&bull;</span> ${res.items[0].name}<br><span>&bull;</span> ${res.items[1].name}<br><span>&bull;</span> ${res.items[2].name}`
+                    let albumNames = res.items.map(element => element.name);
+                    let albumURL = res.items.map(element => element.external_urls.spotify);
+                    let albumImg = res.items.map(element => element.images[0].url)
+                    for (let i = 0; i < albumNames.length; i++) {
+                        let albumList = document.createElement('input');
+                        albumList.type = 'submit';
+                        albumList.value = albumNames[i];
+                        albumList.addEventListener('click', e =>{
+                            e.preventDefault();
+                            albumCover.src = albumImg[i];
+                            albumCover.alt = albumNames[i];
+                            albumLink.href = albumURL[i];
+                            albumLink.target = '_blank';
+                            
+                        })
+                        
+                        albums.appendChild(albumList);
+                    }
+                    // albums.innerHTML = `<span>&bull;</span> ${res.items[0].name}<br><span>&bull;</span> ${res.items[1].name}<br><span>&bull;</span> ${res.items[2].name}`
                     console.log(res)
                 })
                 .catch(err => console.log(err))

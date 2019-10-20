@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="flex">
+    <img src="" alt="" class="artist-img">
     <form class="search-container flex">
         <input type="search" name="searchfield" class="search field" placeholder="Enter an artist...">
         <input type="submit" value="search" class="search button">
     </form>
     <div class="modal">
         <h1 class="modal-info artist"></h1>
-        <img src="" alt="" class="artist-img">
+        
         <div class="tabs">
             <div class="tab">
                 <input type="checkbox" id="chck1" class="check">
@@ -26,13 +27,21 @@
                 <input type="checkbox" id="chck2" class="check">
                 <label class="tab-label" for="chck2">Albums</label>
                 <div class="tab-content albums">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. A, in!
                 </div>
             </div>
           </div>
         
     </div>
     <div class="overlay"></div>
+
+    <div class="album-overlay flex">
+        <div class="album-wrapper">
+                <div class="album-exit"></div>
+                <a href="" class="album-link">
+                        <img src="" alt="" class="album-img">
+                </a>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

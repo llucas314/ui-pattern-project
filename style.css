@@ -61,7 +61,11 @@ p {
   transition: opacity 200ms linear;
 }
 
-
+.artist{
+    transform: translateY(53px);
+    color: #FFFFFF;
+    font-size: 2em;
+}
 
 .search {
   background: #363D4E;
@@ -102,7 +106,7 @@ p {
 .corner{
     max-height: 35vmin;
     width: auto;
-    transform: translate(-37vw,-10vh);
+    transform: translate(-35vw,-33vh);
     box-shadow: 10px 10px rgba(0,0,0,0.2);
 }
 
@@ -200,5 +204,11 @@ input:checked ~ .tab-content {
       color: teal;
   }
 
+.album-overlay{
+    position: fixed;
+    background: rgba(225, 225, 225, .2);
+    height: 108vh;
+    width: 100vw;
+}
 
   
