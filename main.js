@@ -36,12 +36,7 @@ fetch(url, {
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
-    modal.classList.add('display');
-    overlay.classList.add('display');
-    form.classList.add('conceal');
-    tabs.classList.remove('display');
-    // artist.classList.add('conceal');
-    input.classList.add('white');
+    
     checks.forEach(element=>element.checked = false);
     while(songs.firstChild){
         songs.removeChild(songs.firstChild);
@@ -60,88 +55,96 @@ form.addEventListener('submit', function(e){
         .then(res => res.json())
         .then(res => {
             console.log(res);
-            artistImage.src = res.artists.items[0].images[0].url;
-            // background.src = res.artists.items[0].images[0].url;
-            artist.innerHTML = "inside the cove with <span>"+res.artists.items[0].name+'</span>';
-            artist.classList.add('small');
-            title.innerText = res.artists.items[0].name + ' - The Music Cove'
-            // artist.classList.remove('conceal');
-            artistImage.classList.remove('corner');
-            let artistID = res.artists.items[0].id
-            fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=10&market=US`, {
-                headers: {
-                    "Authorization": `Bearer ${accessToken}`
-                }
-            })
-                .then(res => res.json())
-                .then(res => {
-                    let albumArray = [];
-                    let foundSame = false
-                    for (let i = 0; i < res.items.length; i++) {
-                        for(let j = 0; j < albumArray.length; j++){
-                            if(albumArray[j].name == res.items[i].name){
-                                foundSame = true;
-                            }
-                        } 
-                        if(foundSame == false){
-                            albumArray.push(res.items[i]);
-                        }
-                        foundSame = false;
+            if (res.artists.items.length > 0){
+                modal.classList.add('display');
+    overlay.classList.add('display');
+    form.classList.add('conceal');
+    tabs.classList.remove('display');
+    // artist.classList.add('conceal');
+    input.classList.add('white');
+                artistImage.src = res.artists.items[0].images[0].url;
+                // background.src = res.artists.items[0].images[0].url;
+                artist.innerHTML = "inside the cove with <span>"+res.artists.items[0].name+'</span>';
+                artist.classList.add('small');
+                title.innerText = res.artists.items[0].name + ' - The Music Cove'
+                // artist.classList.remove('conceal');
+                artistImage.classList.remove('corner');
+                let artistID = res.artists.items[0].id
+                fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=10&market=US`, {
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`
                     }
-                    let albumNames = albumArray.map(element=>element.name);
-                    // res.items.map((element) =>{
-                        // if(!albumNames.includes(element.name)){
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        let albumArray = [];
+                        let foundSame = false
+                        for (let i = 0; i < res.items.length; i++) {
+                            for(let j = 0; j < albumArray.length; j++){
+                                if(albumArray[j].name == res.items[i].name){
+                                    foundSame = true;
+                                }
+                            } 
+                            if(foundSame == false){
+                                albumArray.push(res.items[i]);
+                            }
+                            foundSame = false;
+                        }
+                        let albumNames = albumArray.map(element=>element.name);
+                        // res.items.map((element) =>{
+                            // if(!albumNames.includes(element.name)){
+                            //     return element.name
+                            // } else return
                         //     return element.name
-                        // } else return
-                    //     return element.name
-                    // });
-                    let albumURL = albumArray.map(element => element.external_urls.spotify);
-                    let albumImg = albumArray.map(element => element.images[0].url)
-                    for (let i = 0; i < albumNames.length; i++) {
-                        let albumList = document.createElement('a');
-                        albumList.href = '#';
-                        albumList.innerText = albumNames[i];
-                        albumList.addEventListener('click', e =>{
-                            e.preventDefault();
-                            albumCover.src = albumImg[i];
-                            albumCover.alt = albumNames[i];
-                            albumLink.href = albumURL[i];
-                            albumLink.target = '_blank';
-                            albumOverlay.classList.add('display');
-                            albumWrapper.style.transform = 'scale(1)';
-                            albumExit.addEventListener('click', e =>{
-                                albumOverlay.classList.remove('display');
-                                albumWrapper.style.transform = 'scale(0)';
+                        // });
+                        let albumURL = albumArray.map(element => element.external_urls.spotify);
+                        let albumImg = albumArray.map(element => element.images[0].url)
+                        for (let i = 0; i < albumNames.length; i++) {
+                            let albumList = document.createElement('a');
+                            albumList.href = '#';
+                            albumList.innerText = albumNames[i];
+                            albumList.addEventListener('click', e =>{
+                                e.preventDefault();
+                                albumCover.src = albumImg[i];
+                                albumCover.alt = albumNames[i];
+                                albumLink.href = albumURL[i];
+                                albumLink.target = '_blank';
+                                albumOverlay.classList.add('display');
+                                albumWrapper.style.transform = 'scale(1)';
+                                albumExit.addEventListener('click', e =>{
+                                    albumOverlay.classList.remove('display');
+                                    albumWrapper.style.transform = 'scale(0)';
+                                })
+                                
                             })
                             
-                        })
-                        
-                        albums.appendChild(albumList);
+                            albums.appendChild(albumList);
+                        }
+                        // albums.innerHTML = `<span>&bull;</span> ${res.items[0].name}<br><span>&bull;</span> ${res.items[1].name}<br><span>&bull;</span> ${res.items[2].name}`
+                        console.log(res)
+                    })
+                    .catch(err => console.log(err))
+                fetch(`https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US`, {
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`
                     }
-                    // albums.innerHTML = `<span>&bull;</span> ${res.items[0].name}<br><span>&bull;</span> ${res.items[1].name}<br><span>&bull;</span> ${res.items[2].name}`
-                    console.log(res)
-                })
-                .catch(err => console.log(err))
-            fetch(`https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US`, {
-                headers: {
-                    "Authorization": `Bearer ${accessToken}`
-                }
-                })
-            .then(res => res.json())
-            .then(res => {
-                let tracks = res.tracks.map(element => element.name);
-                let trackURL = res.tracks.map(element => element.external_urls.spotify)
-                for (let i = 0; i < tracks.length; i++) {
-                    let trackLink = document.createElement('a');
-                    trackLink.href = trackURL[i];
-                    trackLink.innerText = (i+1)+'.  ' +tracks[i];
-                    trackLink.target = '_blank';
-                    songs.appendChild(trackLink);
-                }
-                // songs.innerHTML = `<span>&bull;</span> ${tracks[0].name} <br> <span>&bull;</span>  ${tracks[1].name} <br> <span>&bull;</span>  ${tracks[2].name} <br> <span>&bull;</span>  ${tracks[3].name} <br> <span>&bull;</span>  ${tracks[4].name}`
-                console.log(res)}) 
-            .catch(err => console.log(err))   
-            setTimeout(toggle, 2000);
+                    })
+                .then(res => res.json())
+                .then(res => {
+                    let tracks = res.tracks.map(element => element.name);
+                    let trackURL = res.tracks.map(element => element.external_urls.spotify)
+                    for (let i = 0; i < tracks.length; i++) {
+                        let trackLink = document.createElement('a');
+                        trackLink.href = trackURL[i];
+                        trackLink.innerText = (i+1)+'.  ' +tracks[i];
+                        trackLink.target = '_blank';
+                        songs.appendChild(trackLink);
+                    }
+                    // songs.innerHTML = `<span>&bull;</span> ${tracks[0].name} <br> <span>&bull;</span>  ${tracks[1].name} <br> <span>&bull;</span>  ${tracks[2].name} <br> <span>&bull;</span>  ${tracks[3].name} <br> <span>&bull;</span>  ${tracks[4].name}`
+                    console.log(res)}) 
+                .catch(err => console.log(err))   
+                setTimeout(toggle, 2000);
+            }
         })
         .catch(err => console.log(err))
 })

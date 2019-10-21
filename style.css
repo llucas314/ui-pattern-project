@@ -67,17 +67,20 @@ p {
     position: absolute;
     color: #FFFFFF;
     font-size: 3em;
-    font-variant-caps: all-small-caps;
-    color: #FDD662;
-    text-shadow: 1px 1px 0px #000;
+    background-color: #1a252f;
+    padding: 0 .3em;
+    border-radius: .2em;
+    
 }
 .small{
     font-size: 4vmin;
     color: #ffffff;
+    font-variant-caps: all-small-caps;
 }
 span{
     font-size: 6vmin;
-    color: #FDD662;
+    color: #1a252f;
+    text-decoration: underline;
 }
 .search {
   background: #363D4E;
