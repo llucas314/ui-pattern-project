@@ -1,4 +1,4 @@
-# spotify-api
+# ui-pattern-project
 
 The purpose of this repository was to populate UI patterns with data from an API. This website displays data from the Spotify API  using an accordian menu and modals. 
 
