@@ -263,7 +263,7 @@ input:checked ~ .tab-content {
   
   .conceal {
     visibility: hidden;
-    transition: none;
+    transition: all 100ms linear;
   }
 
   .background{

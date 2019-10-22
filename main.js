@@ -1,4 +1,4 @@
-const url = 'https://accounts.spotify.com/api/token';
+const url = 'https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/api/token';
 const id = window.btoa('b80116ff49ec4b59903eeed7716ae9e8:10c8f3cc424746b6853b11e7d1e987d2')
 const modal = document.querySelector('.modal');
 const form = document.querySelector('form');
@@ -8,7 +8,7 @@ const input = document.querySelector('.field');
 let inputValue;
 let artistImage = document.querySelector('.artist-img');
 let artist = document.querySelector('.artist');
-const searchUrl = 'https://api.spotify.com/v1/search?type=artist&q='
+const searchUrl = 'https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/search?type=artist&q='
 const tabs = document.querySelector('.tabs');
 const songs = document.querySelector('.songs');
 const albums = document.querySelector('.albums');
@@ -70,7 +70,7 @@ form.addEventListener('submit', function(e){
                 // artist.classList.remove('conceal');
                 artistImage.classList.remove('corner');
                 let artistID = res.artists.items[0].id
-                fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=10&market=US`, {
+                fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/artists/${artistID}/albums?offset=0&limit=10&market=US`, {
                     headers: {
                         "Authorization": `Bearer ${accessToken}`
                     }
@@ -124,7 +124,7 @@ form.addEventListener('submit', function(e){
                         console.log(res)
                     })
                     .catch(err => console.log(err))
-                fetch(`https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US`, {
+                fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US`, {
                     headers: {
                         "Authorization": `Bearer ${accessToken}`
                     }
