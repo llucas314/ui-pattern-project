@@ -10,4 +10,7 @@
     .corner{
         transform: translate(-29vw,-30vh);
     }
+    .field{
+        border-bottom: none;
+    }
 }
