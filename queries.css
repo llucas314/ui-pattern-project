@@ -1,0 +1,13 @@
+@media screen and (max-width: 640px){
+    .bottom {
+        position: absolute;
+        transform: translateY(25vh);
+        width: 34vw;
+    }
+    .img{
+        max-height: 40vw;
+    }
+    .corner{
+        transform: translate(-29vw,-30vh);
+    }
+}
