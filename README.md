@@ -24,7 +24,6 @@ The purpose of this repository was to populate UI patterns with data from an API
 
 1. Fork and clone this repository.
 2. Open index.html in your browser.
-3. You may have to use CORS for the site to access the API. Follow [this link](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en "Allow CORS: Access-Control-Allow-Origin") or [this link](https://chrome.google.com/webstore/detail/moesif-orign-cors-changer/digfbfaphojjndkpccljibejjbppifbc?hl=en-US "Moesif Orign & CORS Changer") to install the extensions in Chrome.
 
   
 ## Contributing
