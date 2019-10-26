@@ -13,4 +13,8 @@
     .field{
         border-bottom: none;
     }
+    .artist {
+        transform: translateY(-46vh);
+        font-size: 2em;
+    }
 }
