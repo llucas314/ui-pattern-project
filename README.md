@@ -2,6 +2,10 @@
 
 The purpose of this repository was to populate UI patterns with data from an API. This website displays data from the Spotify API  using an accordian menu and modals. 
 
+## Website
+
+[The Music Cove](https://llucas314.github.io/ui-pattern-project/)
+
 ## Screenshots
 
 ![homepage](./images/homepage.png)
